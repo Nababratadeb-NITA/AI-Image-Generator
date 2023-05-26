@@ -1,5 +1,7 @@
 // post.js
-const mongoose = require('mongoose');
+//const mongoose = require('mongoose');
+import mongoose from 'mongoose';
+
 
 const commentSchema = new mongoose.Schema({
   user_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
@@ -19,6 +21,7 @@ const postSchema = new mongoose.Schema({
   likes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
 });
 
-const Post = mongoose.model('Post', postSchema);
+export const Post = mongoose.model('Post', postSchema);
 
-module.exports = Post;
+//module.exports = Post;
+export default Post;

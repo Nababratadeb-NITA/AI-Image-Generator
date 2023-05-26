@@ -10,6 +10,11 @@ import dalleRoutes from "./routes/dalleRoutes.js";
 the API. The imported module is then used in the `app.use("/api/v1/user", userRoutes);` middleware
 to handle requests to the `/api/v1/user` endpoint. */
 import userRoutes from "./routes/userRoutes.js";
+//import storyRoutes from "./routes/storyRoutes.js";
+import { router as storyRoutes } from "./routes/storyRoutes.js";
+
+
+
 
 dotenv.config();
 
@@ -20,6 +25,7 @@ app.use(express.json());
 app.use("/api/v1/posts", postRoutes);
 app.use("/api/v1/jarvis", dalleRoutes);
 app.use("/api/v1/user", userRoutes);
+app.use("/api/v1/story",storyRoutes);
 
 app.get("/", (req, res) => {
   res.send("Hello From Backend");

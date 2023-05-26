@@ -2,7 +2,9 @@ import express from "express";
 import * as dotenv from "dotenv";
 import { v2 as cloudinary } from "cloudinary";
 
-import Post from "../mongodb/models/post.js";
+
+import { default as Post } from "../mongodb/models/post.js";
+
 
 dotenv.config();
 
@@ -50,3 +52,5 @@ router.post("/", async (req, res) => {
 });
 
 export default router;
+//export const Post = mongoose.model("Post", postSchema);
+
