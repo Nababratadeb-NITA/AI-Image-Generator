@@ -1,7 +1,7 @@
 import express from "express";
 const router = express.Router();
 
-import User from "../mongodb/models/user.js";
+import {default as User} from "../mongodb/models/user.js";
 
 // Get all users
 router.get("/", async (req, res) => {
