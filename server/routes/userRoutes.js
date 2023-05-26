@@ -1,7 +1,7 @@
 import express from "express";
 const router = express.Router();
 
-import {default as User} from "../mongodb/models/user.js";
+import { default as User } from "../mongodb/models/user.js";
 
 // Get all users
 router.get("/", async (req, res) => {
@@ -24,18 +24,22 @@ router.get("/:id", async (req, res) => {
 
 // Create a new user
 router.post("/", async (req, res) => {
-  const { name, email, image } = req.body;
-  const user = new User({ name, email, image });
-  await user.save();
-  res.json({ message: "User created successfully", user });
+  try {
+    const { username, email, user_image } = req.body;
+    const user = new User({ username, email, user_image });
+    await user.save();
+    res.json({ message: "User created successfully", user });
+  } catch (error) {
+    res.status(500).send(error);
+  }
 });
 
 // Update an existing user
 router.put("/:id", async (req, res) => {
-  const { name, email, image } = req.body;
+  const { username, email, user_image } = req.body;
   const user = await User.findByIdAndUpdate(
     req.params.id,
-    { name, email, image },
+    { username, email, user_image },
     { new: true }
   );
   res.json({ message: "User updated successfully", user });

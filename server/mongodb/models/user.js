@@ -6,8 +6,8 @@ const userSchema = new mongoose.Schema({
   username: String,
   email: String,
   user_image : String,
-  created_at: Date,
-  updated_at: Date,
+  created_at: { type: Date, default: Date.now},
+  updated_at: { type: Date, default: Date.now},
 });
 
 export const User = mongoose.model('User', userSchema);
