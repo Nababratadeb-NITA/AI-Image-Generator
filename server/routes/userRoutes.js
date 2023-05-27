@@ -30,7 +30,19 @@ router.post("/", async (req, res) => {
     await user.save();
     res.json({ message: "User created successfully", user });
   } catch (error) {
-    res.status(500).send(error);
+    if (error.code === 11000) {
+      // Duplicate key error, email already exists
+      res.status(400).json({
+        success: false,
+        message: "Email address is already registered",
+      });
+    } else {
+      // Other error occurred
+      res.status(500).json({
+        success: false,
+        message: "An error occurred while creating the user",
+      });
+    }
   }
 });
 

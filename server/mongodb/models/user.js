@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 
 const userSchema = new mongoose.Schema({
   username: String,
-  email: String,
+  email: { type:String, unique : true},
   user_image : String,
   created_at: { type: Date, default: Date.now},
   updated_at: { type: Date, default: Date.now},
