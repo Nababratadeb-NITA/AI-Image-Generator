@@ -6,17 +6,17 @@ import mongoose from 'mongoose';
 const commentSchema = new mongoose.Schema({
   user_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   content: String,
-  created_at: Date,
-  updated_at: Date,
+  created_at: { type: Date, default: Date.now},
+  updated_at: { type: Date, default: Date.now},
 });
 
 const postSchema = new mongoose.Schema({
   user_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-  image_url: String,
-  caption: String,
+  username: String,
+  photo: String,
   prompt: String,
-  created_at: Date,
-  updated_at: Date,
+  created_at: { type: Date, default: Date.now},
+  updated_at: { type: Date, default: Date.now},
   comments: [commentSchema],
   likes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
 });
