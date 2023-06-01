@@ -1,5 +1,5 @@
-import express, { response } from "express";
-import * as dotenv from "dotenv";
+import express from "express";
+import dotenv from "dotenv";
 import { Configuration, OpenAIApi } from "openai";
 
 dotenv.config();
@@ -11,27 +11,28 @@ const configuration = new Configuration({
 });
 
 const openai = new OpenAIApi(configuration);
-router.route("/").get((req, res) => {
-  res.send("hello from OPENAI");
+
+router.get("/", (req, res) => {
+  res.send("Hello from OpenAI");
 });
 
-router.route("/").post(async (req, res) => {
+router.post("/", async (req, res) => {
   try {
     const { prompt } = req.body;
 
     const aiResponse = await openai.createImage({
       prompt,
       n: "1",
-      size: "1024*1024",
-      response_format: "b64_json",
+      size: "1024x1024", // Use lowercase 'x' instead of '*' for the size
+      responseFormat: "b64_json", // Use camelCase for the response format
     });
 
-    const image = aiResponse.data.data[0].b64_json;
+    const image = aiResponse.data.data[0].image.b64; // Access the 'image' property and then 'b64'
 
     res.status(200).json({ photo: image });
   } catch (error) {
     console.log(error);
-    res.status(500).json(error?.response.data.error.message);
+    res.status(500).json(error?.response?.data?.error?.message);
   }
 });
 
