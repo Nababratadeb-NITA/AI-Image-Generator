@@ -13,7 +13,7 @@ const Nav = () => {
     <nav className="flex justify-between items-center px-8 md:px-20 w-full mb-16 pt-3">
       <Link href="/" className="flex gap-2 flex-center">
         
-        <p className="max-sm:hidden text-xl font-satoshi font-semibold text-black tracking-wide">Promptopia</p>
+        <p className="max-sm text-xl font-satoshi font-semibold text-black tracking-wide">Promptopia</p>
       </Link>
 
       {/* Desktop Navigation */}
@@ -59,7 +59,7 @@ const Nav = () => {
       <div className="sm:hidden flex relative">
         <div className="flex">
           <Image
-            src={""}
+            src=""
             width={37}
             height={37}
             className="rounded-full"
